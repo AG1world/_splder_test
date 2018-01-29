@@ -14,9 +14,15 @@ BOT_NAME = 'Sun'
 SPIDER_MODULES = ['Sun.spiders']
 NEWSPIDER_MODULE = 'Sun.spiders'
 
+MONGO_PORT =27017
+MONGO_HOST ='127.0.0.1'
+MONGO_DBNAME ='Sun'
+MONGO_COLNAME ='zhengwu'
+
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'Sun (+http://www.yourdomain.com)'
+# USER_AGENT = 'Sun (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -64,9 +70,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'Sun.pipelines.SunPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'Sun.pipelines.SunPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

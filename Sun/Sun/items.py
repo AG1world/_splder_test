@@ -11,4 +11,10 @@ import scrapy
 class SunItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    # 编号,标题,投诉内容,处理状态
+    num = scrapy.Field()
+    title = scrapy.Field()
+    comment = scrapy.Field()
+    status = scrapy.Field()
+    url = scrapy.Field()
+
