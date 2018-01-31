@@ -42,7 +42,7 @@ class DoubanPipeline_1(object):
     def process_item(self, item, spider):
         '处理item对象中的字典数据'
         dict_data = dict(item)
-        
+
         str_data = json.dumps(dict_data,ensure_ascii=False) +',\n'
         self.file.write(str_data)
         return item
