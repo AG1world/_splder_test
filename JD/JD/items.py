@@ -17,6 +17,8 @@ class JdItem(scrapy.Item):
     # url:     https://book.jd.com/booksort.html
     # 书名
     book = scrapy.Field()
+    # 价格，
+    price = scrapy.Field()
     # 大分类
     big_category = scrapy.Field()
     # 小分类
@@ -31,8 +33,7 @@ class JdItem(scrapy.Item):
     author = scrapy.Field()
     # 封面图片链接
     img_link= scrapy.Field()
-    # 价格，
-    price = scrapy.Field()
+
     # 出版社
     publisher = scrapy.Field()
     # 出版时间，
