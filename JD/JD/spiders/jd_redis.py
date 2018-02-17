@@ -3,11 +3,30 @@ import json
 
 import scrapy
 from JD.items import JdItem
+# 1. 导入类
+from scrapy_redis.spiders import RedisSpider
 
-class JdSpider(scrapy.Spider):
+# 2. 修改继承的类
+
+# class JdSpider(scrapy.Spider):
+class JdSpider(RedisSpider):
+
     name = 'jd'
-    allowed_domains = ['jd.com','3.cn']
-    start_urls = ['https://book.jd.com/booksort.html']
+    # 3. 注销起始的url和允许的域名
+    # allowed_domains = ['jd.com','3.cn']
+    # start_urls = ['https://book.jd.com/booksort.html']
+
+    # 4. 使用redis_key代替了起始url列表
+    redis_key = 'book'
+
+    # 5. 设置动态获取允许的域
+    def __init__(self,*args,**kwargs):
+        # 动态设置获取允许的域名列表
+        domain = kwargs.pop('domain', '')
+        # filter()生成一个过滤对象<迭代器>,第一个参数过滤的条件,第二个参数,带过滤列表
+        # 为保证有效化一般在外部添加一个列表转化
+        self.allowed_domains = list(filter(None, domain.split(',')))
+        super(JdSpider, self).__init__(*args, **kwargs)
 
     def parse(self, response):
         # 获取大分类节点
@@ -90,37 +109,3 @@ class JdSpider(scrapy.Spider):
 
         yield item
 
-
-
-# Questions:
-
-
-    # meta传参中,item在大分类中创建item,不是不可以,本质都是字典,只是在多数替换少数更方便
-
-    # price 怎么判断 network 中没有,怎么通过js获取
-        # 首先验证　书写的ｘｐａｔｈ是否可以获取页面中的数据
-        # 不行: 首先将xpath粘在页面中检测是否能获取
-        # 不行: 将 获取关键字 粘贴在allfiles find 中查找
-        # 无: 则是js获取
-        # js: 分类- js动态请求另一个网页数据,获取url,得到目标数据
-                #   大量js计算,短时间无法破解,通过自动化测试工具获取
-
-    # 获取相邻节点中的子节点
-        # /follow-sibiling::*[0或者不写]
-
-    # 当复杂的js,怎么单独使用selenium获取price
-
-    # 测试时应该指选取少量来验证ｘｐａｔｈ是否书写正确，否则，项目没有运行ｉｐ就直接被封掉
-    # 节点列表选择器不能以［０］切片，却可以使用［０：１］来切片
-
-    # 回调函数什么时候调用使用函数名的字符串，什么适合调用类中的函数（self.callfunc）
-        #    １． spider  使用的回调函数应该是调用类中的方法
-        #　　２．　crawl spider 应该使用是的字符串
-
-    #  获取下一页数据？？？？
-        # 获取下一页xpath，再拼接下一页url，并通过scrapy.request来调用函数,及参数的传递
-    # 怎么校对页面少的节点
-        # 通过xpath再次尝试在页面中获取的节点个数
-        #　'//*[@id="plist"]/ul/li/div/div[3]/a/em'
-
-    # 服务器域名与页面访问地址等关系区别

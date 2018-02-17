@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for JD project
+# Scrapy settings for Zhiyouji project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,62 +9,17 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-# Scrapy settings for example project
-#
-# For simplicity, this file contains only the most important settings by
-# default. All the other settings are documented here:
-#
-#     http://doc.scrapy.org/topics/settings.html
-#
+BOT_NAME = 'Zhiyouji'
 
-#settings设置
-# 6. 启scrapy_redis的重复过滤米快,原有重复过滤器将停用
-# 7. 启用scrapyredis中调度器,该调度器具有与redis数据交互的功能,原有调度器被关闭
-# 8. 设置调度器请求队列保持,可是实现爬虫的断点续爬
-# 9. 制定redis数据库地址
-SPIDER_MODULES = ['JD.spiders']
-NEWSPIDER_MODULE = 'JD.spiders'
-
-USER_AGENT = 'scrapy-redis (+https://github.com/rolando/scrapy-redis)'
-
-# -----------启用scrapyredis的重复过滤器模块，原有重复过滤器将停用
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# -----------启用scrapyredis中的调度器，该调度器具有与redis数据库交互的功能，原有的调度器将停用
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-# -----------设置调度器请求队列保持，可以实现爬虫的断点续爬
-SCHEDULER_PERSIST = True
-
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderQueue"
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderStack"
-
-ITEM_PIPELINES = {
-    # 'JD.pipelines.ExamplePipeline': 300,
-    # ---------scrapyredis管道
-    'scrapy_redis.pipelines.RedisPipeline': 400,
-}
-# ------------指定redis数据库地址
-REDIS_URL = 'redis://172.16.123.128:6379'
-
-LOG_LEVEL = 'DEBUG'
-
-# Introduce an artifical delay to make use of parallelism. to speed up the
-# crawl.
-# DOWNLOAD_DELAY = 1
+SPIDER_MODULES = ['Zhiyouji.spiders']
+NEWSPIDER_MODULE = 'Zhiyouji.spiders'
 
 
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+#USER_AGENT = 'Zhiyouji (+http://www.yourdomain.com)'
 
-# BOT_NAME = 'JD'
-#
-# SPIDER_MODULES = ['JD.spiders']
-# NEWSPIDER_MODULE = 'JD.spiders'
-#
-#
-# # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36'
-# LOG_LEVEL = 'WARNING'
 # Obey robots.txt rules
-# ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -92,13 +47,13 @@ LOG_LEVEL = 'DEBUG'
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'JD.middlewares.JdSpiderMiddleware': 543,
+#    'Zhiyouji.middlewares.ZhiyoujiSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'JD.middlewares.JdDownloaderMiddleware': 543,
+#    'Zhiyouji.middlewares.ZhiyoujiDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -109,9 +64,9 @@ LOG_LEVEL = 'DEBUG'
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'JD.pipelines.JdPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'Zhiyouji.pipelines.ZhiyoujiPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
