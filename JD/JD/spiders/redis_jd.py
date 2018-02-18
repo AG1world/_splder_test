@@ -11,7 +11,7 @@ from scrapy_redis.spiders import RedisSpider
 # class JdSpider(scrapy.Spider):
 class JdSpider(RedisSpider):
 
-    name = 'jd'
+    name = 'jd_redis'
     # 3. 注销起始的url和允许的域名
     # allowed_domains = ['jd.com','3.cn']
     # start_urls = ['https://book.jd.com/booksort.html']
@@ -53,7 +53,7 @@ class JdSpider(RedisSpider):
     def detail_parse(self,response):
         item1 = response.meta['meta1']
         node_list = response.xpath('//*[@id="plist"]/ul/li/div')
-        for node in node_list:
+        for node in node_list[0]:
             item = JdItem()
             item['big_category'] = item1['big_category']
             item['small_category'] = item1['small_category']
@@ -95,12 +95,13 @@ class JdSpider(RedisSpider):
             # 'https://list.jd.com/list.html?cat=1713,3258,3297&page=2&sort=sort_rank_asc&trans=1&JL=6_0_0'
             # '/list.html?cat=1713,3258,3297&page=2&sort=sort%5Frank%5Fasc&trans=1&JL=6_0_0'
 
-            # next_data = response.xpath('//*[@id="J_bottomPage"]/span[1]/a[10]/@href').extract()[0]
-            # next_url = 'https://list.jd.com/' + next_data
-            # # 判断是否到达最后一页
-            # if next_url is  not None:
-            #     # 没有到达最后一页就发送请求，模拟翻页
-            #     yield scrapy.Request(next_url, callback=self.detail_parse)
+            next_data = response.xpath('//*[@id="J_bottomPage"]/span[1]/a[10]/@href').extract()[0]
+            print(next_data)
+            next_url = 'https://list.jd.com/' + next_data
+            # 判断是否到达最后一页
+            if next_data is  not None:
+                # 没有到达最后一页就发送请求，模拟翻页
+                yield scrapy.Request(next_url, callback=self.detail_parse)
 
     def price_parse(self,response):
         item = response.meta['meta2']

@@ -22,31 +22,31 @@
 # 7. 启用scrapyredis中调度器,该调度器具有与redis数据交互的功能,原有调度器被关闭
 # 8. 设置调度器请求队列保持,可是实现爬虫的断点续爬
 # 9. 制定redis数据库地址
-SPIDER_MODULES = ['JD.spiders']
-NEWSPIDER_MODULE = 'JD.spiders'
-
-USER_AGENT = 'scrapy-redis (+https://github.com/rolando/scrapy-redis)'
-
-# -----------启用scrapyredis的重复过滤器模块，原有重复过滤器将停用
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# -----------启用scrapyredis中的调度器，该调度器具有与redis数据库交互的功能，原有的调度器将停用
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-# -----------设置调度器请求队列保持，可以实现爬虫的断点续爬
-SCHEDULER_PERSIST = True
-
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderQueue"
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderStack"
-
-ITEM_PIPELINES = {
-    # 'JD.pipelines.ExamplePipeline': 300,
-    # ---------scrapyredis管道
-    'scrapy_redis.pipelines.RedisPipeline': 400,
-}
-# ------------指定redis数据库地址
-REDIS_URL = 'redis://172.16.123.128:6379'
-
-LOG_LEVEL = 'DEBUG'
+# SPIDER_MODULES = ['JD.spiders']
+# NEWSPIDER_MODULE = 'JD.spiders'
+#
+# USER_AGENT = 'scrapy-redis (+https://github.com/rolando/scrapy-redis)'
+#
+# # -----------启用scrapyredis的重复过滤器模块，原有重复过滤器将停用
+# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# # -----------启用scrapyredis中的调度器，该调度器具有与redis数据库交互的功能，原有的调度器将停用
+# SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# # -----------设置调度器请求队列保持，可以实现爬虫的断点续爬
+# SCHEDULER_PERSIST = True
+#
+# # SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"
+# # SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderQueue"
+# # SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderStack"
+#
+# ITEM_PIPELINES = {
+#     # 'JD.pipelines.ExamplePipeline': 300,
+#     # ---------scrapyredis管道
+#     'scrapy_redis.pipelines.RedisPipeline': 400,
+# }
+# # ------------指定redis数据库地址
+# REDIS_URL = 'redis://192.168.8.132:6379'
+#
+# LOG_LEVEL = 'DEBUG'
 
 # Introduce an artifical delay to make use of parallelism. to speed up the
 # crawl.
@@ -54,17 +54,17 @@ LOG_LEVEL = 'DEBUG'
 
 
 
-# BOT_NAME = 'JD'
-#
-# SPIDER_MODULES = ['JD.spiders']
-# NEWSPIDER_MODULE = 'JD.spiders'
-#
-#
-# # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36'
+BOT_NAME = 'JD'
+
+SPIDER_MODULES = ['JD.spiders']
+NEWSPIDER_MODULE = 'JD.spiders'
+
+
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36'
 # LOG_LEVEL = 'WARNING'
 # Obey robots.txt rules
-# ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

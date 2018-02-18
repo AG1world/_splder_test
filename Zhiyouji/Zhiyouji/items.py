@@ -10,5 +10,29 @@ import scrapy
 
 class ZhiyoujiItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    data_source = scrapy.Field()
+
+    timestamp = scrapy.Field()
+
+    company_name = scrapy.Field()
+
+    views = scrapy.Field()
+
+    slogan = scrapy.Field()
+
+    category = scrapy.Field()
+
+    industry = scrapy.Field()
+
+    desc = scrapy.Field()
+
+    praise = scrapy.Field()
+
+    salary = scrapy.Field()
+
+    finance_info = scrapy.Field()
+
+    address = scrapy.Field()
+
+    contact = scrapy.Field()
+
