@@ -76,4 +76,4 @@ class ZhiyoujiSpider(RedisCrawlSpider):
             finance_info.append(temp)
         item['finance_info'] = finance_info
         print(item)
-        # yield item
+        yield item
