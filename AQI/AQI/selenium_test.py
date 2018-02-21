@@ -29,4 +29,4 @@ time.sleep(3)
 # css_selector
 data = dr.page_source.encode()
 print(data)
-dr.close()
+# dr.close()
