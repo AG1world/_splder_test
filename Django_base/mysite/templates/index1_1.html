@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <title>Title</title>
+</head>
+<body>
+<h3>show_time:{{time1 }}</h3>
+
+{#1. 使用别名的方式#}
+{#<script src="/statics/jquery-1.12.4.min.js"></script>#}
+
+{#2. 使用模板语言#}
+<script src="{% static 'jquery-1.12.4.min.js' %}"></script>
+
+<script>
+    $('h3').css('color','red')
+</script>
+</body>
+</html>

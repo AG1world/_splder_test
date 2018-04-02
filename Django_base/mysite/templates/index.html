@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理</title>
+    <script src="/statics/jquery-1.12.4.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .head{
+            line-height: 40px;
+            background-color: green;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="head" id="1">标题</div>
+    <div class="content">
+        <a href="/blog/add/">添加书籍</a>
+        <a href="/blog//delete/">删除书籍</a>
+        <a href="/blog//update/">修改书籍</a>
+        <a href="/blog/query/">查询书籍</a>
+    </div>
+    <div>
+        {% for book in book_list %}
+        <p>{{ book.id }}     {{ book.name }} {{ book.price }} </p>
+        {% endfor %}
+
+    </div>
+    <script>
+        $('.a').css('color','red')
+        $('#1').css('color','yellow')
+    </script>
+</div>
+</body>
+</html>
