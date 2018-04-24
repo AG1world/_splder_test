@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     {% load staticfiles %}
+    {% load filters %}
     <title>Title</title>
 </head>
 <body>
+{#<h2>{{ id |mod:3 }} </h2>#}
+<h2>{{ name|safe }} </h2>
+<h2>{{ name1|escape }} </h2>
 <h3>show_time:{{time1 }}</h3>
 
 {#1. 使用别名的方式#}

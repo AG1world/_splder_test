@@ -13,10 +13,12 @@ def show_time(req):
     time1 = time.ctime()
     # 必须返回的httpresponse对象
     # return HttpResponse('hello:%s'%time1)
-
+    id = 5
+    name  ='<h2>nihao</h2>'
+    name1  ='<h2>chile ma </h2>'
     # 返回封装的模板
     # return render(req, 'index1_1.html',locals())
-    return render(req, 'index1_1.html',{'time1':time1})
+    return render(req, 'index1_1.html',locals())
 
 
 def article(req,y):
@@ -52,7 +54,7 @@ def now_time(req):
 
     return render(req,'now_time.html',locals())
 
-# 图书类打增删改查
+# 图书类的增删改查
 from blog.models import *
 
 def index(req):
@@ -155,6 +157,8 @@ def query(req):
     # 查询之 Q与F   F()是直接对字段的操作;使用查询条件的值,专门取对象中某列值的操作
     # re1  = Book.objects.filter(name__contains='p')
     # print(re1)
+
+    #错误示范
     # re2 = Book.objects.filter(name__contains='python基础').update(price=price+1)
     # re2 = Book.objects.filter(name__contains='python基础').update(price = F('price')+1)
     # print(re2)
@@ -187,6 +191,7 @@ Session <django.contrib.sessions.backends.db.SessionStore object at 0x7fc0aae4ff
 
 """
 
+# 在登陆时,当输入参数和校验正确时,修改登陆的状态和保存登陆者信息
 def login(req):
     print('COOKIES',req.COOKIES)
     print('Session',req.session)   # 得到一个session对象
@@ -208,7 +213,7 @@ def login(req):
     return render(req,'login.html',locals())
 
 
-
+# 在跳转指定登陆页面时,当浏览器发送带cookie请求时,会获取到服务器对应session数据,从而达到保存状态的效果
 def cookie_test(req):
     # if req.COOKIES.get('username',None):
     #     name = req.COOKIES.get('username',None)
