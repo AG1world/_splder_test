@@ -9,6 +9,10 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 # 视图函数中
+from rest_framework import exceptions
+from rest_framework.views import APIView
+
+
 @csrf_exempt
 def users(req):
     l = ['gao','zhang']
@@ -75,3 +79,43 @@ class Students(MyBaseView,View):
 #
 # obj = APIView()
 # obj.dispatch()
+
+
+# rest_frame 认证实现
+
+from  rest_framework.authentication import BaseAuthentication
+
+class MyAuthentication(object):
+    # 定义authenticate()方法,比照认证的token,如果不符合抛出异常
+    def authenticate(self, request):
+        token = request._request.GET.get('token')
+        if not token:
+            raise exceptions.AuthenticationFailed('认证失败')
+        return ('gao', '真帅')
+    def authenticate_header(self,val):
+        pass
+
+
+
+class DogView(APIView):
+
+    authentication_classes = [MyAuthentication,]
+
+    def get(self,request,*args,**kwargs):
+        # self.dispatch()
+        ret  = {
+            'code':100,
+            'msg':'OK'
+        }
+        return HttpResponse(json.dumps(ret), status=201)
+
+    def post(self,request,*args,**kwargs):
+        return HttpResponse('POST')
+
+    def put(self,request,*args,**kwargs):
+        return HttpResponse('PUT')
+
+    def delete(self,request,*args,**kwargs):
+        return HttpResponse('DELETE')
+
+
